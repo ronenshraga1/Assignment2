@@ -20,7 +20,14 @@ public class Assignment2 {
     public static boolean isSquareMatrix(boolean[][] matrix) {
         boolean result = true; // default return value
         // ---------------write your code BELOW this line only! ------------------
-
+        int arrayLength = 0;
+        for(int i=0;i<matrix.length && result;i++){
+                if(i==0){
+                    arrayLength = matrix[0].length;
+                } else if(arrayLength != matrix[i].length){
+                    result = false;
+                }
+            }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
@@ -31,7 +38,13 @@ public class Assignment2 {
     public static boolean isSymmetricMatrix(boolean[][] matrix) {
         boolean result = true; // default return value
         // ---------------write your code BELOW this line only! ------------------
-
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j< matrix[i].length;j++){
+                if(matrix[i][j] != matrix[j][i]){
+                    result = false;
+                }
+            }
+        }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
@@ -42,7 +55,11 @@ public class Assignment2 {
     public static boolean isAntiReflexiveMatrix(boolean[][] matrix) {
         boolean result = true; // default return value
         // ---------------write your code BELOW this line only! ------------------
-
+        for(int i=0;i< matrix.length && result;i++){
+            if(matrix[i][i]){
+                result = false;
+            }
+        }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
@@ -54,7 +71,7 @@ public class Assignment2 {
     public static boolean isValidSolution(boolean[][] flights, int[] tour) {
         boolean result = false; // default return value
         // ---------------write your code BELOW this line only! ------------------
-
+        result = isPermutation(tour) && areStepsLegal(flights,tour) && tour[0] == 0;
         // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
@@ -65,7 +82,19 @@ public class Assignment2 {
     public static boolean isPermutation(int[] array) {
         boolean result = true; // default return value, CHANGED IT TO TRUE.
         // ---------------write your code BELOW this line only! ------------------
+        int isOne = 0,checkedNumber =0;
+        for(int i=0;i<array.length ;i++){
+            isOne = 0;
+            for(int j=0;j<array.length;j++){
 
+                if(array[j]==checkedNumber){
+                    isOne++;
+                }
+            }
+            if(isOne>1 || isOne == 0)
+                result = false;
+            checkedNumber++;
+        }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
