@@ -205,7 +205,10 @@ public class Assignment2 {
     // Reverses the directions of elements greater than the given mobile element.
     public static void reverseDirections(int[] permutation, int[] directions, int mobileElement) {
         // ---------------write your code BELOW this line only! ------------------
-
+            for(int i=0;i<permutation.length;i++){
+                if(permutation[i]>mobileElement)
+                    directions[i]=directions[i] * -1;
+            }
         // ---------------write your code ABOVE this line only! ------------------
     }
 
