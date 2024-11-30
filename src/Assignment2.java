@@ -219,8 +219,21 @@ public class Assignment2 {
     public static int findMobileIndex(int[] permutation, int[] directions) {
         int result = -1; // default return value
         // ---------------write your code BELOW this line only! ------------------
+        int largestMobile = -1;
 
-        // ---------------write your code ABOVE this line only! ------------------
+        for (int i = 0; i < permutation.length; i++) {
+            int current = permutation[i];
+            int direction = directions[i];
+            int targetIndex = i + direction;
+
+            if (targetIndex >= 0 && targetIndex < permutation.length && permutation[targetIndex] < current) {
+                if (current > largestMobile) {
+                    largestMobile = current;
+                    result = i;
+                }
+            }
+        }
+            // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
 
