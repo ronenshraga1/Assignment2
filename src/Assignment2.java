@@ -168,10 +168,11 @@ public class Assignment2 {
         for(int e: directions){
             e=-1;
         }
-        result =new int[n][n];
+        int totalPermutations = factorial(n);
+        result = new int[totalPermutations][n];
         copyArray(permutation,result[0]);
         int i =1;
-        while ((directions[i] == -1 && permutation[i]>permutation[i-1])|| (directions[i] ==1 && permutation[i]>permutation[i+1])){
+        while (findMobileIndex(permutation, directions) != -1){
         int mobileElement = findMobileIndex(permutation,directions);
         swap(permutation,directions,mobileElement);
         reverseDirections(permutation,directions,mobileElement);
@@ -244,7 +245,12 @@ public class Assignment2 {
     public static int[] solveBigTripProblemExhaustive(boolean[][] flights) {
         int[] result = null; // default return value
         // ---------------write your code BELOW this line only! ------------------
+        int permutations[][] =generatePermutations(flights.length);
+        for (int i = 0; i < permutations.length; i++) {
+            if(isValidSolution(flights,permutations[i])){
 
+            }
+        }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
