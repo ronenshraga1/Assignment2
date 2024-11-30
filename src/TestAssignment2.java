@@ -62,14 +62,14 @@ public class TestAssignment2 {
 //        testSwap(permutation2, directions2, 0, postPermutation2, postDirections2);
 //
 //		// Test task 2.3
-//        int[] permutation3 = {0,1,3,2};
-//        int[] directions3 = {1,-1,1,-1};
-//        int[] postDirections3 = {1,-1,-1,1};
-//        testReverseDirections(permutation3, directions3, 1, postDirections3);
-//        int[] permutation4 = {4,1,3,2,0};
-//        int[] directions4 = {1,-1,1,-1,1};
-//        int[] postDirections4 = {-1,1,-1,1,1};
-//        testReverseDirections(permutation4, directions4, 0, postDirections4);
+        int[] permutation3 = {0,1,3,2};
+        int[] directions3 = {1,-1,1,-1};
+        int[] postDirections3 = {1,-1,-1,1};
+        testReverseDirections(permutation3, directions3, 1, postDirections3);
+        int[] permutation4 = {4,1,3,2,0};
+        int[] directions4 = {1,-1,1,-1,1};
+        int[] postDirections4 = {-1,1,-1,1,1};
+        testReverseDirections(permutation4, directions4, 0, postDirections4);
 //
 //		// Test task 2.4
 //        int[] permutation5 = {0,1,3,2};

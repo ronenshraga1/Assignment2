@@ -189,11 +189,12 @@ public class Assignment2 {
         // ---------------write your code BELOW this line only! ------------------
            int tempDirections = directions[mobileIndex];
            int tempPermutation = permutation[mobileIndex];
-           if(mobileIndex+directions[mobileIndex] < permutation.length){
+           if(mobileIndex+directions[mobileIndex] < permutation.length && mobileIndex+directions[mobileIndex] >=0){
+               System.out.println(mobileIndex+directions[mobileIndex]);
                permutation[mobileIndex] = permutation[mobileIndex+directions[mobileIndex]];
                directions[mobileIndex] = directions[mobileIndex+directions[mobileIndex]];
-               directions[mobileIndex+directions[mobileIndex]] =tempDirections;
-               permutation[mobileIndex+directions[mobileIndex]] = tempPermutation;
+               directions[mobileIndex+tempDirections] =tempDirections;
+               permutation[mobileIndex+tempDirections] = tempPermutation;
 
            }
 
