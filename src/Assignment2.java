@@ -82,8 +82,8 @@ public class Assignment2 {
     public static boolean isPermutation(int[] array) {
         boolean result = true; // default return value, CHANGED IT TO TRUE.
         // ---------------write your code BELOW this line only! ------------------
-        int isOne = 0,checkedNumber =0;
-        for(int i=0;i<array.length ;i++){
+        int isOne = 0;
+        for(int checkedNumber =0;checkedNumber<array.length ;checkedNumber++){
             isOne = 0;
             for(int j=0;j<array.length;j++){
 
@@ -93,7 +93,6 @@ public class Assignment2 {
             }
             if(isOne>1 || isOne == 0)
                 result = false;
-            checkedNumber++;
         }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
@@ -105,7 +104,17 @@ public class Assignment2 {
     public static boolean areStepsLegal(boolean[][] flights, int[] tour) {
         boolean result = true;
         // ---------------write your code BELOW this line only! ------------------
-
+        int firstCity=0,secondCity=0;
+        for(int i=0;i<tour.length-1 && result;i++){
+            firstCity=tour[i];
+            secondCity=tour[i+1];
+          if(!(flights[firstCity][secondCity] && flights[secondCity][firstCity]) && firstCity!=secondCity){
+              result = false;
+          }
+        }
+        if(!(flights[tour[0]][tour[tour.length-1]] && flights[tour[tour.length-1]][tour[0]]) && tour[0] != tour[tour.length-1]){
+            result = false;
+        }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
@@ -154,7 +163,21 @@ public class Assignment2 {
     public static int[][] generatePermutations(int n) {
         int[][] result = null; // default return value
         // ---------------write your code BELOW this line only! ------------------
-
+        int[] permutation = createRange(n);
+        int[] directions = new int[n];
+        for(int e: directions){
+            e=-1;
+        }
+        result =new int[n][n];
+        copyArray(permutation,result[0]);
+        int i =1;
+        while ((directions[i] == -1 && permutation[i]>permutation[i-1])|| (directions[i] ==1 && permutation[i]>permutation[i+1])){
+        int mobileElement = findMobileIndex(permutation,directions);
+        swap(permutation,directions,mobileElement);
+        reverseDirections(permutation,directions,mobileElement);
+        copyArray(permutation,result[i]);
+        i++;
+        }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
@@ -164,6 +187,15 @@ public class Assignment2 {
     // Swaps elements in permutation and directions based on the mobile index.
     public static void swap(int[] permutation, int[] directions, int mobileIndex) {
         // ---------------write your code BELOW this line only! ------------------
+           int tempDirections = directions[mobileIndex];
+           int tempPermutation = permutation[mobileIndex];
+           if(mobileIndex+directions[mobileIndex] < permutation.length){
+               permutation[mobileIndex] = permutation[mobileIndex+directions[mobileIndex]];
+               directions[mobileIndex] = directions[mobileIndex+directions[mobileIndex]];
+               directions[mobileIndex+directions[mobileIndex]] =tempDirections;
+               permutation[mobileIndex+directions[mobileIndex]] = tempPermutation;
+
+           }
 
         // ---------------write your code ABOVE this line only! ------------------
     }

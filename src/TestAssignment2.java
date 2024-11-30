@@ -4,10 +4,10 @@ public class TestAssignment2 {
     public static void main(String[] args){
 
 		// Test task 1.1
-//        boolean[][] flights = {{false, false, true, true},
-//                                {false, false, true, true},
-//                                {true, true, false, true},
-//                                {true, true, true, false}};
+        boolean[][] flights = {{false, false, true, true},
+                                {false, false, true, true},
+                                {true, true, false, true},
+                                {true, true, true, false}};
 //        testIsLegalInstance(flights, true);
 
         // Test task 1.2
@@ -24,16 +24,16 @@ public class TestAssignment2 {
 
 //
 		// Test task 1.4
-        boolean[][] matrix5 = {{false,false},{true,false}};
-        testIsAntiReflexiveMatrix(matrix5, true);
-        boolean[][] matrix6 = {{false,false},{true,true}};
-        testIsAntiReflexiveMatrix(matrix6, false);
+//        boolean[][] matrix5 = {{false,false},{true,false}};
+//        testIsAntiReflexiveMatrix(matrix5, true);
+//        boolean[][] matrix6 = {{false,false},{true,true}};
+//        testIsAntiReflexiveMatrix(matrix6, false);
 //
 //		// Test task 1.5
-//        int[] tour = {0,2,1,3};
+        int[] tour = {0,2,1,3};
 //        testIsValidSolution(flights, tour, true);
 //
-//		// Test task 1.6
+		// Test task 1.6
 //        int[] array1 = {0,2,1,3};
 //        testIsPermutation(array1, true);
 //        int[] array2 = {1,4,3,2};
@@ -41,6 +41,7 @@ public class TestAssignment2 {
 //
 //		// Test task 1.7
 //        testAreStepsLegal(flights, tour, true);
+
 //
 //		// Test task 2.1
 //        int[][] perm1 = {{0,1},{1,0}};
