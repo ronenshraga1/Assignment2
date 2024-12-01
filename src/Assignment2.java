@@ -279,7 +279,23 @@ public class Assignment2 {
     public static boolean[][] encoder(boolean[][] flights) {
         boolean[][] result = null; // default return value
         // ---------------write your code BELOW this line only! ------------------
-
+        result = new boolean[flights.length+1][flights.length+1];
+        boolean[] copycity = new boolean[flights.length+1];
+        copycity[flights.length] = flights[flights.length-1][flights.length-1];
+        for(int i =0;i<result.length;i++){
+            for(int j =0;j<result.length;j++){
+                if(i == 0 && j<flights.length){
+                    copycity[j] = flights[i][j];
+                    result[i][j] = flights[i][j];
+                } else if( i == flights.length){
+                    result[i][j] = copycity[j];
+                } else if (j==flights.length) {
+                    result[i][j] = copycity[i];
+                } else{
+                    result[i][j] = flights[i][j];
+                }
+            }
+        }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
@@ -290,7 +306,13 @@ public class Assignment2 {
     public static int[] decoder(int[] hamiltonianPath) {
         int[] result = null; // default return value
         // ---------------write your code BELOW this line only! ------------------
+        if(hamiltonianPath != null){
+            result = new int[hamiltonianPath.length-1];
+            for(int i =0;i<hamiltonianPath.length-1;i++){
+                result[i] = hamiltonianPath[i];
+            }
 
+        }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
