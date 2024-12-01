@@ -1,39 +1,39 @@
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class TestAssignment2 {
     public static void main(String[] args){
 
-		// Test task 1.1
+        // Test task 1.1
         boolean[][] flights = {{false, false, true, true},
-                                {false, false, true, true},
-                                {true, true, false, true},
-                                {true, true, true, false}};
+                {false, false, true, true},
+                {true, true, false, true},
+                {true, true, true, false}};
 //        testIsLegalInstance(flights, true);
-
-        // Test task 1.2
+//
+//        // Test task 1.2
 //        boolean[][] matrix1 = {{false,false},{true,true}};
 //        testIsSquareMatrix(matrix1, true);
 //        boolean[][] matrix2 = {{true,false,true},{false,false}};
 //        testIsSquareMatrix(matrix2, false);
 //        boolean[][] matrix3 = {};
 //        testIsSquareMatrix(matrix3, true);
-
-		// Test task 1.3
+//
+//		// Test task 1.3
 //        boolean[][] matrix4 = {{false,false,true},{false,false,true},{true,true,true}};
 //        testIsSymmetricMatrix(matrix4, true);
-
 //
-		// Test task 1.4
+//		// Test task 1.4
 //        boolean[][] matrix5 = {{false,false},{true,false}};
 //        testIsAntiReflexiveMatrix(matrix5, true);
 //        boolean[][] matrix6 = {{false,false},{true,true}};
 //        testIsAntiReflexiveMatrix(matrix6, false);
 //
 //		// Test task 1.5
-        int[] tour = {0,2,1,3};
+//        int[] tour = {0,2,1,3};
 //        testIsValidSolution(flights, tour, true);
 //
-		// Test task 1.6
+//		// Test task 1.6
 //        int[] array1 = {0,2,1,3};
 //        testIsPermutation(array1, true);
 //        int[] array2 = {1,4,3,2};
@@ -41,7 +41,6 @@ public class TestAssignment2 {
 //
 //		// Test task 1.7
 //        testAreStepsLegal(flights, tour, true);
-
 //
 //		// Test task 2.1
 //        int[][] perm1 = {{0,1},{1,0}};
@@ -72,16 +71,16 @@ public class TestAssignment2 {
 //        testReverseDirections(permutation4, directions4, 0, postDirections4);
 //
 //		// Test task 2.4
-        int[] permutation5 = {0,1,3,2};
-        int[] directions5 = {-1,1,-1,1};
-        testFindMobileIndex(permutation5, directions5, 2);
-        int[] permutation6 = {0,2,1,3};
-        int[] directions6 = {-1,-1,1,1};
-        testFindMobileIndex(permutation6, directions6, 1);
+//        int[] permutation5 = {0,1,3,2};
+//        int[] directions5 = {-1,1,-1,1};
+//        testFindMobileIndex(permutation5, directions5, 2);
+//        int[] permutation6 = {0,2,1,3};
+//        int[] directions6 = {-1,-1,1,1};
+//        testFindMobileIndex(permutation6, directions6, 1);
 //
-//		// Test task 2.5
-//        int[] tour1 = {0,3,1,2};
-//        testSolveBigTripProblemExhaustive(flights, tour1);
+		// Test task 2.5
+        int[] tour1 = {0,3,1,2};
+        testSolveBigTripProblemExhaustive(flights, tour1);
 //
 //		// Test task 3.1
 //        boolean[][] postFlights = {{false, false, true, true, false},
@@ -205,8 +204,8 @@ public class TestAssignment2 {
             result = "Failed";
         }
         System.out.println("Testing swap: input = "+Arrays.toString(permutation) +", "
-            + Arrays.toString(directions) + ", " + mobileIndex + "; Expected output= "
-            + Arrays.toString(newPermutation) +", " + Arrays.toString(newDirections) + "; --> "+result);
+                + Arrays.toString(directions) + ", " + mobileIndex + "; Expected output= "
+                + Arrays.toString(newPermutation) +", " + Arrays.toString(newDirections) + "; --> "+result);
     }
 
     // Test task 2.3
@@ -220,8 +219,8 @@ public class TestAssignment2 {
             result = "Failed";
         }
         System.out.println("Testing reverseDirections: input = "+Arrays.toString(permutation) +", "
-            + Arrays.toString(directions) + ", " + mobileElement + "; Expected output= "
-            + Arrays.toString(newDirections) + "; --> "+result);
+                + Arrays.toString(directions) + ", " + mobileElement + "; Expected output= "
+                + Arrays.toString(newDirections) + "; --> "+result);
     }
 
     // Test task 2.4
@@ -234,7 +233,7 @@ public class TestAssignment2 {
             result = "Failed";
         }
         System.out.println("Testing findMobileIndex: input = "+Arrays.toString(permutation) +", "
-            + Arrays.toString(directions) + "; Expected output= " + output + "; --> "+result);
+                + Arrays.toString(directions) + "; Expected output= " + output + "; --> "+result);
     }
 
     // Test task 2.5
@@ -275,7 +274,7 @@ public class TestAssignment2 {
         System.out.println("Testing decoder: input = "+ Arrays.toString(hamiltonianPath)+ "; Expected output= " + Arrays.toString(output) + "; --> "+result);
     }
 
-	//return an inline string representing the array
+    //return an inline string representing the array
     public static String arrayToString(boolean[][] array) {
         String result = "";
         if (array == null) {

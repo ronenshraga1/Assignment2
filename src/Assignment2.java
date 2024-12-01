@@ -165,19 +165,21 @@ public class Assignment2 {
         // ---------------write your code BELOW this line only! ------------------
         int[] permutation = createRange(n);
         int[] directions = new int[n];
-        for(int e: directions){
-            e=-1;
+        for(int index =0;index<directions.length;index++){
+            directions[index]=-1;
         }
         int totalPermutations = factorial(n);
         result = new int[totalPermutations][n];
         copyArray(permutation,result[0]);
         int i =1;
-        while (findMobileIndex(permutation, directions) != -1){
-        int mobileElement = findMobileIndex(permutation,directions);
-        swap(permutation,directions,mobileElement);
-        reverseDirections(permutation,directions,mobileElement);
-        copyArray(permutation,result[i]);
-        i++;
+        while (true){
+            int largestMobileIndex = findMobileIndex(permutation, directions);
+            if (largestMobileIndex == -1) break;
+            int swapIndex = largestMobileIndex + directions[largestMobileIndex];
+            swap(permutation, directions, largestMobileIndex);
+            reverseDirections(permutation, directions, permutation[swapIndex]);
+            copyArray(permutation,result[i]);
+            i++;
         }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
@@ -188,18 +190,16 @@ public class Assignment2 {
     // Swaps elements in permutation and directions based on the mobile index.
     public static void swap(int[] permutation, int[] directions, int mobileIndex) {
         // ---------------write your code BELOW this line only! ------------------
-           int tempDirections = directions[mobileIndex];
-           int tempPermutation = permutation[mobileIndex];
-           if(mobileIndex+directions[mobileIndex] < permutation.length && mobileIndex+directions[mobileIndex] >=0){
-               System.out.println(mobileIndex+directions[mobileIndex]);
-               permutation[mobileIndex] = permutation[mobileIndex+directions[mobileIndex]];
-               directions[mobileIndex] = directions[mobileIndex+directions[mobileIndex]];
-               directions[mobileIndex+tempDirections] =tempDirections;
-               permutation[mobileIndex+tempDirections] = tempPermutation;
+        int tempDirections = directions[mobileIndex];
+        int tempPermutation = permutation[mobileIndex];
+        if(mobileIndex+directions[mobileIndex] < permutation.length && mobileIndex+directions[mobileIndex] >=0){
+            permutation[mobileIndex] = permutation[mobileIndex+directions[mobileIndex]];
+            permutation[mobileIndex+tempDirections] = tempPermutation;
+            directions[mobileIndex] = directions[mobileIndex+directions[mobileIndex]];
+            directions[mobileIndex+tempDirections] =tempDirections;
+        }
 
-           }
-
-        // ---------------write your code ABOVE this line only! ------------------
+            // ---------------write your code ABOVE this line only! ------------------
     }
 
     // task 2.3
@@ -207,10 +207,11 @@ public class Assignment2 {
     // Reverses the directions of elements greater than the given mobile element.
     public static void reverseDirections(int[] permutation, int[] directions, int mobileElement) {
         // ---------------write your code BELOW this line only! ------------------
-            for(int i=0;i<permutation.length;i++){
-                if(permutation[i]>mobileElement)
-                    directions[i]=directions[i] * -1;
+        for (int i = 0; i < permutation.length; i++) {
+            if (permutation[i] > mobileElement) {
+                directions[i] *= -1;
             }
+        }
         // ---------------write your code ABOVE this line only! ------------------
     }
 
@@ -220,23 +221,25 @@ public class Assignment2 {
     public static int findMobileIndex(int[] permutation, int[] directions) {
         int result = -1; // default return value
         // ---------------write your code BELOW this line only! ------------------
-        int largestMobile = -1;
-
         for (int i = 0; i < permutation.length; i++) {
-            int current = permutation[i];
-            int direction = directions[i];
-            int targetIndex = i + direction;
-
-            if (targetIndex >= 0 && targetIndex < permutation.length && permutation[targetIndex] < current) {
-                if (current > largestMobile) {
-                    largestMobile = current;
+            if (isMobile(permutation,directions,i)) {
+                if(result == -1 || permutation[i] > permutation[result]){
                     result = i;
                 }
+
             }
         }
             // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
+    public static boolean isMobile(int[] values, int[] directions, int index) {
+        int targetIndex = index + directions[index];
+        if (targetIndex < 0 || targetIndex >= values.length) {
+            return false;
+        }
+        return values[targetIndex] < values[index];
+    }
+
 
 
     // task 2.5
@@ -248,7 +251,7 @@ public class Assignment2 {
         int permutations[][] =generatePermutations(flights.length);
         for (int i = 0; i < permutations.length; i++) {
             if(isValidSolution(flights,permutations[i])){
-
+                result = permutations[i];
             }
         }
         // ---------------write your code ABOVE this line only! ------------------
