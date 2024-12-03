@@ -20,6 +20,9 @@ public class Assignment2 {
     public static boolean isSquareMatrix(boolean[][] matrix) {
         boolean result = true; // default return value
         // ---------------write your code BELOW this line only! ------------------
+        if(matrix == null){
+            throw new IllegalArgumentException("matrix is null");
+        }
         int arrayLength = 0;
         for(int i=0;i<matrix.length && result;i++){
                 if(i==0){
@@ -38,6 +41,9 @@ public class Assignment2 {
     public static boolean isSymmetricMatrix(boolean[][] matrix) {
         boolean result = true; // default return value
         // ---------------write your code BELOW this line only! ------------------
+        if(matrix == null || !isSquareMatrix(matrix)){
+            throw new IllegalArgumentException("matrix is null or is not square");
+        }
         for(int i=0;i<matrix.length;i++){
             for(int j=0;j< matrix[i].length;j++){
                 if(matrix[i][j] != matrix[j][i]){
@@ -55,6 +61,9 @@ public class Assignment2 {
     public static boolean isAntiReflexiveMatrix(boolean[][] matrix) {
         boolean result = true; // default return value
         // ---------------write your code BELOW this line only! ------------------
+        if(matrix == null || !isSquareMatrix(matrix)){
+            throw new IllegalArgumentException("matrix is null or is not square");
+        }
         for(int i=0;i< matrix.length && result;i++){
             if(matrix[i][i]){
                 result = false;
@@ -71,6 +80,8 @@ public class Assignment2 {
     public static boolean isValidSolution(boolean[][] flights, int[] tour) {
         boolean result = false; // default return value
         // ---------------write your code BELOW this line only! ------------------
+        if(flights.length<=0 || tour.length != flights.length)
+            throw new IllegalArgumentException("flights array is empty");
         result = isPermutation(tour) && areStepsLegal(flights,tour) && tour[0] == 0;
         // ---------------write your code ABOVE this line only! ------------------
         return result;
@@ -82,6 +93,8 @@ public class Assignment2 {
     public static boolean isPermutation(int[] array) {
         boolean result = true; // default return value, CHANGED IT TO TRUE.
         // ---------------write your code BELOW this line only! ------------------
+        if(array == null)
+            throw new IllegalArgumentException("array is null");
         int isOne = 0;
         for(int checkedNumber =0;checkedNumber<array.length ;checkedNumber++){
             isOne = 0;
@@ -104,6 +117,8 @@ public class Assignment2 {
     public static boolean areStepsLegal(boolean[][] flights, int[] tour) {
         boolean result = true;
         // ---------------write your code BELOW this line only! ------------------
+        if(flights.length <=0 || !stepsLegalvalidator(tour))
+            throw new IllegalArgumentException("flights empty or not valid values in tour");
         int firstCity=0,secondCity=0;
         for(int i=0;i<tour.length-1 && result;i++){
             firstCity=tour[i];
@@ -117,6 +132,19 @@ public class Assignment2 {
         }
         // ---------------write your code ABOVE this line only! ------------------
         return result;
+    }
+    //Assumes tour is not null
+    // returns if values in tour are between[0,n-1]
+    public static boolean stepsLegalvalidator(int[] tour){
+        if(tour == null){
+            throw new IllegalArgumentException("tour is null");
+        }
+        boolean isValid = true;
+        for (int i=0;i<tour.length;i++){
+            if(tour[i]>=tour.length || tour[i]<0)
+                isValid = false;
+        }
+        return isValid;
     }
 
     ///////////////////////////////////
@@ -163,6 +191,8 @@ public class Assignment2 {
     public static int[][] generatePermutations(int n) {
         int[][] result = null; // default return value
         // ---------------write your code BELOW this line only! ------------------
+        if(n <= 0)
+            throw  new IllegalArgumentException("value received is 0 or smaller");
         int[] permutation = createRange(n);
         int[] directions = new int[n];
         for(int index =0;index<directions.length;index++){
@@ -190,6 +220,8 @@ public class Assignment2 {
     // Swaps elements in permutation and directions based on the mobile index.
     public static void swap(int[] permutation, int[] directions, int mobileIndex) {
         // ---------------write your code BELOW this line only! ------------------
+        if(mobileIndex > permutation.length || mobileIndex < 0)
+            throw new IllegalArgumentException("not valid index");
         int tempDirections = directions[mobileIndex];
         int tempPermutation = permutation[mobileIndex];
         if(mobileIndex+directions[mobileIndex] < permutation.length && mobileIndex+directions[mobileIndex] >=0){
@@ -232,12 +264,15 @@ public class Assignment2 {
             // ---------------write your code ABOVE this line only! ------------------
         return result;
     }
-    public static boolean isMobile(int[] values, int[] directions, int index) {
+    // Assumes permutation and directions are arrays of the same length.
+    // no error throwing here because the function used where there is exmeption from doing it.
+    // returns if number is mobile
+    public static boolean isMobile(int[] permutation, int[] directions, int index) {
         int targetIndex = index + directions[index];
-        if (targetIndex < 0 || targetIndex >= values.length) {
+        if (targetIndex < 0 || targetIndex >= permutation.length) {
             return false;
         }
-        return values[targetIndex] < values[index];
+        return permutation[targetIndex] < permutation[index];
     }
 
 
@@ -248,6 +283,9 @@ public class Assignment2 {
     public static int[] solveBigTripProblemExhaustive(boolean[][] flights) {
         int[] result = null; // default return value
         // ---------------write your code BELOW this line only! ------------------
+        if(flights.length <= 0){
+            throw new IllegalArgumentException("flights is empty");
+        }
         int permutations[][] =generatePermutations(flights.length);
         for (int i = 0; i < permutations.length; i++) {
             if(isValidSolution(flights,permutations[i])){
