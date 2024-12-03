@@ -202,9 +202,8 @@ public class Assignment2 {
         result = new int[totalPermutations][n];
         copyArray(permutation,result[0]);
         int i =1;
-        while (true){
+        while (findMobileIndex(permutation, directions) != -1){
             int largestMobileIndex = findMobileIndex(permutation, directions);
-            if (largestMobileIndex == -1) break;
             int swapIndex = largestMobileIndex + directions[largestMobileIndex];
             swap(permutation, directions, largestMobileIndex);
             reverseDirections(permutation, directions, permutation[swapIndex]);
