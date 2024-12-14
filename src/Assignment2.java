@@ -27,7 +27,7 @@ public class Assignment2 {
         for(int i=0;i<matrix.length && result;i++){
                 if(i==0){
                     arrayLength = matrix[0].length;
-                } else if(arrayLength != matrix[i].length){
+                } else if(arrayLength != matrix[i].length || matrix.length != matrix[i].length){
                     result = false;
                 }
             }
